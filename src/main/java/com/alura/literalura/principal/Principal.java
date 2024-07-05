@@ -20,46 +20,50 @@ public class Principal {
         this.repositorio=repository;
     }
 
-    public void mostrarMenu(){
+    public void mostrarMenu() {
         var opcion = -1;
-        while (opcion != 0){
-
+        while (opcion != 0) {
             var menu = """
-                    ----------------------------------------
-                    Elija la opción que desea (solo numero) :
-                    1- Buscar libro por título
-                    2- Listar libros registrados
-                    3- Listar autores registrados
-                    4- Listar autores vivos en un determinado año
-                    5- Listar libros por idioma
-                    0- Salir
-                    ----------------------------------------
-                    """;
+                ----------------------------------------
+                Elija la opción que desea (solo numero) :
+                1- Buscar libro por título
+                2- Listar libros registrados
+                3- Listar autores registrados
+                4- Listar autores vivos en un determinado año
+                5- Listar libros por idioma
+                0- Salir
+                """;
             System.out.println(menu);
-            opcion = teclado.nextInt();
-            teclado.nextLine();
 
-            switch (opcion){
-                case 1:
-                    buscarLibro();
-                    break;
-                case 2:
-                    mostrarLibros();
-                    break;
-                case 3:
-                    mostrarAutores();
-                    break;
-                case 4:
-                    mostrarAutoresPorAnio();
-                    break;
-                case 5:
-                    mostrarLibrosPorIdioma();
-                    break;
-                case 0:
-                    System.out.println("Cerrando aplicación");
-                    break;
-                default:
-                    System.out.println("Opción inválida");
+            try {
+                opcion = teclado.nextInt();
+                teclado.nextLine(); // Consume el salto de línea
+
+                switch (opcion) {
+                    case 1:
+                        buscarLibro();
+                        break;
+                    case 2:
+                        mostrarLibros();
+                        break;
+                    case 3:
+                        mostrarAutores();
+                        break;
+                    case 4:
+                        mostrarAutoresPorAnio();
+                        break;
+                    case 5:
+                        mostrarLibrosPorIdioma();
+                        break;
+                    case 0:
+                        System.out.println("Cerrando aplicación");
+                        break;
+                    default:
+                        System.out.println("Opción inválida");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Error, coloque solamente dígitos.");
+                teclado.nextLine(); // Consume el input inválido
             }
         }
     }
